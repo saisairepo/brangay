@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Barangay Services</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
+      color: #2c3e50;
+      line-height: 1.6;
+    }
+
+    /* Header Banner */
+    .header {
+      background: linear-gradient(135deg, #2c3e50, #2980b9);
+      color: white;
+      text-align: center;
+      padding: 30px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      border-radius: 0 0 15px 15px;
+    }
+
+    .header h1 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+    .header p {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    /* Form Container */
+    .form-box {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0px 6px 20px rgba(0,0,0,0.1);
+      animation: fadeIn 0.6s ease;
+    }
+
+    .form-box h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #2980b9;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #34495e;
+    }
+
+    .input-group {
+      position: relative;
+      margin-top: 6px;
+    }
+
+    .input-group i {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      transform: translateY(-50%);
+      color: #888;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px 12px 12px 40px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #2980b9;
+      outline: none;
+      box-shadow: 0 0 6px rgba(41,128,185,0.3);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #27ae60, #2ecc71);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.02);
+      background: linear-gradient(135deg, #219150, #27ae60);
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .form-box {
+        margin: 15px;
+        padding: 20px;
+      }
+      .header h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <h1>Barangay Online Services</h1>
+    <p>Submit your request online, hassle-free</p>
+  </div>
+
+  <!-- Form -->
+  <div class="form-box">
+    <h2>Request Form</h2>
+    <form method="POST" action="/submit">
+      
+      <label for="service_type">Select Service</label>
+      <div class="input-group">
+        <i class="fa-solid fa-briefcase"></i>
+        <select name="service_type" required>
+          <option value="">-- Choose Service --</option>
+          <option>Barangay Clearance Request</option>
+          <option>Certificate of Residency</option>
+          <option>Business Permit Assistance</option>
+          <option>Complaint / Feedback</option>
+        </select>
+      </div>
+
+      <label>Full Name</label>
+      <div class="input-group">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" name="fullname" required>
+      </div>
+
+      <label for="address">Select Barangay</label>
+      <div class="input-group">
+        <i class="fa-solid fa-location-dot"></i>
+        <select name="address" required>
+          <option value="">-- Choose Barangay --</option>
+          <option>Alawijao</option>
+          <option>Balhaan</option>
+          <option>Banhigan</option>
+          <option>Basak</option>
+          <option>Basiao</option>
+          <option>Bato</option>
+          <option>Bugas</option>
+          <option>Calangcang</option>
+          <option>Candiis</option>
+          <option>Dagatan</option>
+          <option>Dobdob</option>
+          <option>Ginablan</option>
+          <option>Lambug</option>
+          <option>Malbago</option>
+          <option>Manduyong</option>
+          <option>Matutinao</option>
+          <option>Patong</option>
+          <option>Poblacion</option>
+          <option>Sanlagan</option>
+          <option>Santicon</option>
+          <option>Sohoton</option>
+          <option>Sulsugan</option>
+          <option>Talayong</option>
+          <option>Taytay</option>
+          <option>Tigbao</option>
+          <option>Tiguib</option>
+          <option>Tubod</option>
+          <option>Zaragosa</option>
+        </select>
+      </div>
+
+      <label>Details / Purpose</label>
+      <div class="input-group">
+        <i class="fa-solid fa-pen"></i>
+        <textarea name="details" rows="5" required></textarea>
+      </div>
+
+      <button type="submit"><i class="fa-solid fa-paper-plane"></i> Submit Request</button>
+    </form>
+  </div>
+</body>
+</html>
