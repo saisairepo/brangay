@@ -1,29 +1,28 @@
-substitutions:
-  _REGION: asia-southeast1
-  _PROJECT_ID: ml-sandbox-project
-  _REPO: baranggay
-  _IMAGE: baranggay
-
 steps:
-  # 🏗️ Step 1: Build Docker image
-  - name: 'gcr.io/cloud-builders/docker'
+  # 🧩 Step 1: Clone your GitHub repository
+  - name: 'gcr.io/cloud-builders/git'
     args:
-      [
-        'build',
-        '-t', '$_REGION-docker.pkg.dev/$_PROJECT_ID/$_REPO/$_IMAGE:latest',
-        '.'
-      ]
+      - 'clone'
+      - 'https://github.com/saisairepo/brangay.git'
 
-  # 🚀 Step 2: Push image to Artifact Registry
+  # 🏗️ Step 2: Build Docker image from the cloned repo folder
   - name: 'gcr.io/cloud-builders/docker'
     args:
-      [
-        'push',
-        '$_REGION-docker.pkg.dev/$_PROJECT_ID/$_REPO/$_IMAGE:latest'
-      ]
+      - 'build'
+      - '-f'
+      - 'brangay/Dockerfile'
+      - '-t'
+      - 'asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error:latest'
+      - 'brangay'
+
+  # 🚀 Step 3: Push Docker image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error:latest'
 
 images:
-  - '$_REGION-docker.pkg.dev/$_PROJECT_ID/$_REPO/$_IMAGE:latest'
+  - 'asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error:latest'
 
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
