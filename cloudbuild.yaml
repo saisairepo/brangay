@@ -1,0 +1,29 @@
+substitutions:
+  _REGION: asia-southeast1
+  _PROJECT_ID: ml-sandbox-project
+  _REPO: baranggay
+  _IMAGE: baranggay
+
+steps:
+  # 🏗️ Step 1: Build Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t', '$_REGION-docker.pkg.dev/$_PROJECT_ID/$_REPO/$_IMAGE:latest',
+        '.'
+      ]
+
+  # 🚀 Step 2: Push image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'push',
+        '$_REGION-docker.pkg.dev/$_PROJECT_ID/$_REPO/$_IMAGE:latest'
+      ]
+
+images:
+  - '$_REGION-docker.pkg.dev/$_PROJECT_ID/$_REPO/$_IMAGE:latest'
+
+options:
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
